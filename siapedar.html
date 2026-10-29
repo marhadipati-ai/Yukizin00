@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <!--
-  SiapEdar — mockup aplikasi v2 (prototipe tanpa backend).
+  Yukizin — mockup aplikasi v2 (prototipe tanpa backend).
   Keamanan: halaman ini TIDAK memuat sumber eksternal, TIDAK memanggil API,
   TIDAK menyimpan data ke localStorage/cookie, dan TIDAK mengirim data ke mana pun.
   Ringkasan aturan diperbarui per 27 Oktober 2026; tarif uji lab adalah angka contoh.
@@ -12,7 +12,7 @@
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data:; base-uri 'none'; form-action 'none'">
 <meta name="referrer" content="no-referrer">
 <meta name="theme-color" content="#0E5A52">
-<title>SiapEdar — Mockup Aplikasi</title>
+<title>Yukizin — Mockup Aplikasi</title>
 <style>
 :root{
   --ink:#14231F; --muted:#55635E; --teal:#0E5A52; --teal-d:#0B3F3A; --mint:#E3F0EC;
@@ -282,7 +282,7 @@ h1,h2,h3,p{margin:0}
 'use strict';
 (function () {
   /* =========================================================
-     SiapEdar v2 — mockup interaktif.
+     Yukizin v2 — mockup interaktif.
      - Tanpa backend, tanpa API. Semua data di memori (S) dan hilang saat dimuat ulang.
      - Kata sandi tidak disimpan. Isi berkas tidak dibaca, hanya nama & ukuran.
      - Semua teks pengguna di-escape sebelum ditampilkan.
@@ -562,7 +562,7 @@ h1,h2,h3,p{margin:0}
     izinRows.push([halalTxt, hasP('halal') || c.halal === 'sehati' ? 0 : num(c.halalReg)]);
     var izin = sum(izinRows, function (r) { return r[1]; });
     var lainRows = [['Desain dan cetak label awal', num(c.label)], ['Kirim/jemput sampel', sel.length ? num(c.ongkir) : 0], ['Perbaikan sarana produksi', num(c.sarana)]];
-    if (c.pendamping) lainRows.push(['Pendampingan SiapEdar', FEE[path]]);
+    if (c.pendamping) lainRows.push(['Pendampingan Yukizin', FEE[path]]);
     var lain = sum(lainRows, function (r) { return r[1]; });
     var total = lab + sampel + izin + lain;
     var harga = num(c.harga), margin = harga - hpp, bep = margin > 0 ? Math.ceil(total / margin) : 0;
@@ -628,7 +628,7 @@ h1,h2,h3,p{margin:0}
   /* ---------- Sambutan & akun ---------- */
   SCREENS.welcome = function () {
     return '<div class="welcome"><div>' + LOGO(64) + '</div>' +
-      '<h1 class="h1" style="font-size:30px;margin-top:20px">SiapEdar</h1>' +
+      '<h1 class="h1" style="font-size:30px;margin-top:20px">Yukizin</h1>' +
       '<p class="muted" style="font-size:16px">Asisten izin edar untuk UMKM pangan: tahu izin apa yang dibutuhkan, berapa modalnya, dan berkas apa yang harus disiapkan, dalam satu tempat.</p>' +
       '<ul class="ticks">' +
       '<li><span class="ibox">' + I('search', 18) + '</span>Cek izin produk dalam 2 menit</li>' +
@@ -638,7 +638,7 @@ h1,h2,h3,p{margin:0}
       '<div style="flex:1"></div>' +
       '<div class="stack"><button class="btn" data-act="startCek">Mulai cek produk, tanpa daftar</button>' +
       '<button class="btn btn-2" data-act="go" data-arg="login">Saya sudah punya akun</button></div>' +
-      '<p class="center mt12"><button class="link small" data-act="go" data-arg="fitur">Apa saja fitur SiapEdar?</button> · <button class="link small" data-act="go" data-arg="about">Tentang mockup</button></p>' +
+      '<p class="center mt12"><button class="link small" data-act="go" data-arg="fitur">Apa saja fitur Yukizin?</button> · <button class="link small" data-act="go" data-arg="about">Tentang mockup</button></p>' +
       '<p class="note info mt12 row" style="align-items:flex-start">' + I('shield', 18) + '<span>Versi demo: data hanya ada di perangkat ini dan hilang saat halaman dimuat ulang. Tidak ada data yang dikirim.</span></p></div>';
   };
   SCREENS.register = function () {
@@ -844,7 +844,7 @@ h1,h2,h3,p{margin:0}
       (hasP('halal') ? '<p class="note info mt12">Sertifikat halal sudah dimiliki.</p>' : '<p class="label mt12">Jalur sertifikat halal</p>' + seg('Jalur halal', 'calcHalal', c.halal, [['sehati', 'Self-declare (Rp0)'], ['reguler', 'Reguler']]) + (c.halal === 'reguler' ? numField('halalReg', 'Estimasi biaya halal reguler', 'calc.halalReg', { hint: 'Estimasi. Biaya pasti tampil di SIHALAL sesuai LPH dan skala usaha.' }) : '')) +
       '<div class="two mt12">' + numField('label', 'Desain & cetak label awal', 'calc.label') + numField('ongkir', 'Kirim/jemput sampel', 'calc.ongkir') + '</div>' +
       '<div class="mt12">' + numField('sarana', 'Perbaikan sarana produksi', 'calc.sarana', { hint: 'Misalnya wastafel, meja stainless, rak, atau pemisah ruang.' }) + '</div>' +
-      '<label class="check mt12"><input type="checkbox" data-act2="pendamping"' + (c.pendamping ? ' checked' : '') + '><span>Pakai pendampingan SiapEdar (' + rp(FEE[path]) + ')</span></label></div>' +
+      '<label class="check mt12"><input type="checkbox" data-act2="pendamping"' + (c.pendamping ? ' checked' : '') + '><span>Pakai pendampingan Yukizin (' + rp(FEE[path]) + ')</span></label></div>' +
       '</div><div class="col sticky" id="calc-out">' + calcOut() + '</div></div>';
     return html + '</div>';
   };
@@ -874,7 +874,7 @@ h1,h2,h3,p{margin:0}
   SCREENS.pay = function () {
     var r = calcRes(), tot = r.lab + num(S.calc.ongkir), m = S.cart.bayar, body;
     if (m === 'qris') body = fakeQR() + '<p class="center small muted">Gambar contoh. Bukan kode pembayaran asli.</p>';
-    else if (m === 'transfer') body = '<div class="card card-mint"><p class="sub">Bank Contoh</p><p style="font-size:20px;font-weight:800;letter-spacing:1px">000-000-0000</p><p class="sub">a.n. SiapEdar (contoh)</p></div>';
+    else if (m === 'transfer') body = '<div class="card card-mint"><p class="sub">Bank Contoh</p><p style="font-size:20px;font-weight:800;letter-spacing:1px">000-000-0000</p><p class="sub">a.n. Yukizin (contoh)</p></div>';
     else body = '<div class="card card-mint"><p class="sub">Nomor virtual account (contoh)</p><p style="font-size:20px;font-weight:800;letter-spacing:1px">0000 0000 0000 0000</p></div>';
     return topbar('Pembayaran') + '<div class="pad"><p class="note warn">Simulasi pembayaran. Tidak ada uang yang ditarik dan tidak ada transaksi nyata.</p>' +
       '<div class="center mt16"><p class="muted">Total yang dibayar</p><p style="font-size:30px;font-weight:800;color:var(--teal-d)">' + rp(tot) + '</p></div><div class="mt12">' + body + '</div>' +
@@ -986,7 +986,7 @@ h1,h2,h3,p{margin:0}
     return topbar('Panduan daftar') + '<div class="pad"><h2 class="h1">' + title + '</h2><p class="muted">Langkah umum. Ikuti selalu petunjuk terbaru di kanal resmi.</p>' + cite(pt === 'md' ? ['PB27', 'PB22', 'PP15'] : pt === 'pirt' ? ['PB4', 'CPPB', 'PP28'] : ['PB4', 'HALAL']) +
       '<div class="card mt12"><div class="row between"><b>Kemajuan</b><b>' + n + ' / ' + steps.length + '</b></div><div class="bar mt8"><span style="width:' + Math.round(n / steps.length * 100) + '%"></span></div></div>' +
       steps.map(function (s, i) { var on = !!S.guide[pt + i]; return '<div class="card"><div class="row" style="align-items:flex-start"><span class="sdot ' + (on ? 's-done' : 's-todo') + '" style="margin-top:2px">' + (on ? I('check', 14) : '') + '</span><div class="grow"><b>' + (i + 1) + '. ' + esc(s[0]) + '</b><p class="sub mt8">' + esc(s[1]) + '</p><button class="btn-sm mt12" data-act="guide" data-arg="' + i + '" aria-pressed="' + on + '">' + (on ? 'Selesai' : 'Tandai selesai') + '</button></div></div></div>'; }).join('') +
-      '<p class="note warn mt12">SiapEdar tidak mendaftarkan atas nama Anda dan tidak menjanjikan izin pasti terbit. Akun dan pendaftaran tetap milik Anda, sehingga aman dari calo.</p></div>';
+      '<p class="note warn mt12">Yukizin tidak mendaftarkan atas nama Anda dan tidak menjanjikan izin pasti terbit. Akun dan pendaftaran tetap milik Anda, sehingga aman dari calo.</p></div>';
   };
 
   /* ---------- Pendamping ---------- */
@@ -1024,9 +1024,9 @@ h1,h2,h3,p{margin:0}
   SCREENS.akun = function () {
     return topbar('Akun', { root: true, right: bell() }) + '<div class="pad"><div class="cols"><div class="col"><div class="card row"><span class="ibox" style="width:52px;height:52px;border-radius:99px;font-weight:800;font-size:18px">' + esc(initials(S.user.nama)) + '</span><div class="grow"><b style="font-size:17px">' + esc(S.user.nama) + '</b><p class="sub">' + esc(S.user.usaha) + '</p>' + (S.user.kontak ? '<p class="sub" style="overflow-wrap:anywhere">' + esc(S.user.kontak) + '</p>' : '') + '</div></div>' +
       (S.user.guest ? '<div class="card card-mint"><b>Mode tamu</b><p class="small mt8">Buat akun agar rencana dan berkas tersimpan (pada aplikasi nyata).</p><button class="btn-sm mt12" data-act="go" data-arg="register">Buat akun</button></div>' : '') +
-      '<div class="card card-amber"><div class="row between"><div><b>SiapEdar Plus</b><p class="small">Pengingat masa berlaku SPP-IRT/izin edar (5 tahun), batas halal, dan kabar regulasi. Rp49.000/bulan.</p></div><button class="btn-sm" role="switch" aria-checked="' + S.plus + '" data-act="togglePlus">' + (S.plus ? 'Aktif' : 'Aktifkan') + '</button></div>' + (S.plus ? '<p class="small mt8">Langganan simulasi aktif. Tidak ada tagihan nyata.</p>' : '') + '</div></div>' +
+      '<div class="card card-amber"><div class="row between"><div><b>Yukizin Plus</b><p class="small">Pengingat masa berlaku SPP-IRT/izin edar (5 tahun), batas halal, dan kabar regulasi. Rp49.000/bulan.</p></div><button class="btn-sm" role="switch" aria-checked="' + S.plus + '" data-act="togglePlus">' + (S.plus ? 'Aktif' : 'Aktifkan') + '</button></div>' + (S.plus ? '<p class="small mt8">Langganan simulasi aktif. Tidak ada tagihan nyata.</p>' : '') + '</div></div>' +
       '<div class="col"><div class="card menu" style="padding:4px 12px">' +
-      menuItem('info', 'Panduan fitur', 'Apa saja yang bisa dilakukan SiapEdar', 'go', 'fitur') +
+      menuItem('info', 'Panduan fitur', 'Apa saja yang bisa dilakukan Yukizin', 'go', 'fitur') +
       menuItem('bell', 'Notifikasi', unread() ? unread() + ' belum dibaca' : 'Semua sudah dibaca', 'go', 'notif') +
       menuItem('search', 'Cek produk ulang', 'Ubah jawaban atau produk lain', 'restartCek', '') +
       menuItem('law', 'Sumber aturan', 'Ringkasan regulasi per ' + UPDATED, 'izinAturan', '') +
@@ -1051,11 +1051,11 @@ h1,h2,h3,p{margin:0}
     ['tag', 'Pembuat label', 'Isi data label, lihat pratinjau langsung, dan cek otomatis keterangan wajib sesuai aturan label pangan olahan.', ['LABEL']],
     ['book', 'Panduan daftar mandiri', 'Langkah di OSS atau e-reg BPOM. Pengguna mendaftar sendiri sehingga aman dari calo.', ['PB4', 'PB27']],
     ['chat', 'Pendamping', 'Tanya jawab dan jadwal panggilan video dengan mahasiswa pendamping terlatih.', []],
-    ['star', 'SiapEdar Plus', 'Langganan pengingat masa berlaku izin, batas wajib halal, dan kabar perubahan aturan.', ['HALAL']],
+    ['star', 'Yukizin Plus', 'Langganan pengingat masa berlaku izin, batas wajib halal, dan kabar perubahan aturan.', ['HALAL']],
     ['users', 'Dasbor pembina', 'Untuk dinas, inkubator, dan program TJSL yang membina banyak UMKM sekaligus.', []]
   ];
   SCREENS.fitur = function () {
-    return topbar('Panduan fitur') + '<div class="pad"><h2 class="h1">Apa itu SiapEdar?</h2><p class="muted">SiapEdar adalah asisten perizinan untuk UMKM pangan olahan. Informasi izin selama ini tersebar di OSS, Dinas Kesehatan, BPOM, BPJPH, dan laboratorium. SiapEdar mengumpulkannya menjadi satu alur: <b>tahu izinnya → hitung modalnya → siapkan berkasnya → daftar sendiri</b>.</p>' +
+    return topbar('Panduan fitur') + '<div class="pad"><h2 class="h1">Apa itu Yukizin?</h2><p class="muted">Yukizin adalah asisten perizinan untuk UMKM pangan olahan. Informasi izin selama ini tersebar di OSS, Dinas Kesehatan, BPOM, BPJPH, dan laboratorium. Yukizin mengumpulkannya menjadi satu alur: <b>tahu izinnya → hitung modalnya → siapkan berkasnya → daftar sendiri</b>.</p>' +
       '<div class="card mt16">' + FEATURES.map(function (f, i) { return '<div class="feat"><span class="ibox">' + I(f[0], 20) + '</span><div class="grow"><b>' + (i + 1) + '. ' + esc(f[1]) + '</b><p class="small muted mt8">' + esc(f[2]) + '</p>' + cite(f[3]) + '</div></div>'; }).join('') + '</div>' +
       '<div class="card card-mint"><b>Siapa penggunanya?</b><ul class="cl mt8"><li><span class="y">' + I('check', 18) + '</span>Pemilik UMKM pangan yang ingin produknya legal dan masuk toko.</li><li><span class="y">' + I('check', 18) + '</span>Mahasiswa pendamping yang membantu berkas, label, dan uji.</li><li><span class="y">' + I('check', 18) + '</span>Pembina (dinas, inkubator, TJSL) yang memantau banyak UMKM.</li></ul></div>' +
       (S.user ? '' : '<button class="btn mt16" data-act="startCek">Coba cek produk sekarang</button>') + '</div>';
@@ -1068,9 +1068,9 @@ h1,h2,h3,p{margin:0}
       '<button class="btn btn-2 mt16" data-act="download">Unduh laporan kohort</button></div>';
   };
   SCREENS.about = function () {
-    return topbar('Tentang mockup') + '<div class="pad"><h2 class="h1">Mockup SiapEdar v2</h2><p class="muted">Prototipe untuk menunjukkan alur aplikasi, bukan layanan yang sudah berjalan.</p>' +
+    return topbar('Tentang mockup') + '<div class="pad"><h2 class="h1">Mockup Yukizin v2</h2><p class="muted">Prototipe untuk menunjukkan alur aplikasi, bukan layanan yang sudah berjalan.</p>' +
       '<div class="card mt16"><b>Privasi dan keamanan</b><ul class="cl mt8">' + ['Tidak ada server, API, atau kunci rahasia.', 'Halaman diblokir dari koneksi jaringan apa pun.', 'Data hanya di memori perangkat dan hilang saat dimuat ulang.', 'Kata sandi tidak disimpan, hanya dicek panjangnya.', 'Isi berkas yang dipilih tidak dibaca; hanya namanya.', 'Pembayaran, QR, dan nomor rekening hanyalah contoh.'].map(function (t) { return '<li><span class="y">' + I('shield', 18) + '</span>' + esc(t) + '</li>'; }).join('') + '</ul></div>' +
-      '<div class="card"><b>Catatan isi</b><p class="small mt8">Ringkasan aturan disusun per ' + UPDATED + ' dari peraturan yang berlaku dan pengumuman resmi; selalu cocokkan dengan teks resmi. Tarif uji, gram sampel, dan biaya halal reguler adalah angka contoh. Nama pendamping, hasil uji, dan data pembina fiktif. SiapEdar tidak berafiliasi dengan BPOM, BPJPH, Kementerian Kesehatan, atau lembaga pemerintah mana pun.</p></div></div>';
+      '<div class="card"><b>Catatan isi</b><p class="small mt8">Ringkasan aturan disusun per ' + UPDATED + ' dari peraturan yang berlaku dan pengumuman resmi; selalu cocokkan dengan teks resmi. Tarif uji, gram sampel, dan biaya halal reguler adalah angka contoh. Nama pendamping, hasil uji, dan data pembina fiktif. Yukizin tidak berafiliasi dengan BPOM, BPJPH, Kementerian Kesehatan, atau lembaga pemerintah mana pun.</p></div></div>';
   };
 
   /* ---------- Sheet ---------- */
@@ -1096,13 +1096,13 @@ h1,h2,h3,p{margin:0}
   function sidebar(active) {
     var tabs = TABS.concat([['akun', 'user', 'Akun', 'akun']]);
     tabs[4] = ['chat', 'chat', 'Pendamping', 'chat']; tabs[2] = ['biaya', 'calc', 'Biaya & uji lab', 'biaya']; tabs[1] = ['izin', 'grid', 'Izin & aturan', 'izin']; tabs[3] = ['berkas', 'list', 'Checklist berkas', 'berkas'];
-    return '<aside class="sidebar"><div class="row" style="padding:4px 10px 24px">' + LOGO(36) + '<div><b style="font-size:18px;display:block;line-height:1.1">SiapEdar</b><span class="sub">Dari dapur ke rak toko</span></div></div>' +
+    return '<aside class="sidebar"><div class="row" style="padding:4px 10px 24px">' + LOGO(36) + '<div><b style="font-size:18px;display:block;line-height:1.1">Yukizin</b><span class="sub">Dari dapur ke rak toko</span></div></div>' +
       '<nav class="stack" style="gap:4px" aria-label="Menu utama">' + tabs.map(function (t) { return '<button class="snav" data-act="tab" data-arg="' + t[3] + '"' + (active === t[0] ? ' aria-current="page"' : '') + '>' + I(t[1]) + t[2] + '</button>'; }).join('') + '</nav>' +
       '<div style="flex:1"></div>' + (S.plan ? '<div class="card card-mint" style="padding:12px"><p class="sub">Jalur Anda</p><b>' + esc(PATH[S.plan.path].short) + '</b><p class="sub">' + esc(PB[S.plan.produk].n) + '</p></div>' : '') +
       '<p class="sub" style="padding:10px 8px 0">Aturan per ' + UPDATED + ' · mode demo, tidak ada data yang dikirim</p></aside>';
   }
   function brandPanel() {
-    return '<aside class="auth-brand"><div class="row">' + LOGO(44) + '<b style="font-size:22px">SiapEdar</b></div>' +
+    return '<aside class="auth-brand"><div class="row">' + LOGO(44) + '<b style="font-size:22px">Yukizin</b></div>' +
       '<div><h2 style="font-size:40px;line-height:1.15;font-weight:800;letter-spacing:-.5px">Dari dapur rumah ke rak toko.</h2><p style="font-size:17px;color:#CFE5DF;margin-top:14px">Satu tempat untuk tahu izin, menghitung modal, dan menyiapkan berkas izin edar pangan olahan.</p>' +
       '<div style="margin-top:36px"><div class="brand-stat"><b>Rp0</b><span style="color:#CFE5DF">registrasi izin edar BPOM untuk usaha mikro dan kecil (PP 15/2026)</span></div>' +
       '<div class="brand-stat"><b>17 Okt 2028</b><span style="color:#CFE5DF">batas wajib halal makanan & minuman UMK</span></div>' +
@@ -1201,7 +1201,7 @@ h1,h2,h3,p{margin:0}
     sheet: function (a) { S.sheet = a; keepScroll(); },
     closeSheet: function () { S.sheet = null; keepScroll(); },
     book: function (a) { S.sheet = null; notify('Panggilan video dijadwalkan: ' + a + ' (simulasi).'); S.chat.push({ me: false, t: 'Jadwal panggilan video kita: ' + a + '. Sampai jumpa!', time: stamp() }); render(); toast('Panggilan dijadwalkan.'); },
-    togglePlus: function () { S.plus = !S.plus; if (S.plus) notify('SiapEdar Plus aktif (simulasi, tanpa tagihan).'); toast(S.plus ? 'SiapEdar Plus aktif (simulasi).' : 'SiapEdar Plus dinonaktifkan.'); keepScroll(); },
+    togglePlus: function () { S.plus = !S.plus; if (S.plus) notify('Yukizin Plus aktif (simulasi, tanpa tagihan).'); toast(S.plus ? 'Yukizin Plus aktif (simulasi).' : 'Yukizin Plus dinonaktifkan.'); keepScroll(); },
     forgot: function () { toast('Di versi demo, atur ulang kata sandi hanya simulasi.'); },
     togglePass: function (id, el) { var i = document.getElementById(id); if (!i) return; var show = i.type === 'password'; i.type = show ? 'text' : 'password'; el.setAttribute('aria-pressed', String(show)); el.setAttribute('aria-label', show ? 'Sembunyikan kata sandi' : 'Tampilkan kata sandi'); el.innerHTML = I(show ? 'eyeoff' : 'eye'); },
     demoLogin: function () {
